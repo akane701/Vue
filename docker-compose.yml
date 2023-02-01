@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  vue-app:
+    build:
+      context: .
+      dockerfile: ./VueCDN/vue-project/Dockerfile
+    tty: true
+    environment:
+      - NODE_ENV=development
+    volumes:
+    - ./VueCDN/vue-project:/usr/src/app
+    command: sh -c "npm run dev"
+    ports:
+    - "5173:5173"
+    depends_on:
+      - node-express
+
+    # Dockerはコンテキスト(カレントディレクトリ)の外のファイルにはアクセスできない仕様なのです。そこら辺に関しては以下の記事で詳しく説明されています。
+    # https://qiita.com/sam8helloworld/items/e7fffa9afc82aea68a7a
+  
+  node-express:
+  # DB操作用のPrismaをインストール
+  # ファイルベースのDBであるSQLiteを使うときはDBもかねる。
+    build:
+      context: .
+      dockerfile: ./VueCDN/backend-express-db/Dockerfile
+    tty: true
+    # environment:
+    #   - NODE_ENV=development
+    volumes:
+    - ./VueCDN/backend-express-db:/usr/src/app
+    command: >
+      sh -c "
+      npx nodemon index.js &&
+      npx prisma studio
+      "
+    ports:
+    - "3000:3000"
+    - "5555:5555"
