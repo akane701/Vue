@@ -1,60 +1,60 @@
 # Vue
-Docker使わないときは、手順としては1→5（の一部）のみでOK!
-5.1はすでに最低限のモジュールはインポートしてるので、`vue create`だけでOK。追加するモジュールがあれば適宜追加する感じ。
-（プロジェクトディレクトリにモジュールインストールしたい場合は-g無しでインストール）
-5.2はもともと多分-gで入れてないので、プロジェクトディレクトリで`npm init`、モジュールインポートどちらも行う。
+Docker使わないときは、手順としては1→5（の一部）のみでOK!<br>
+5.1はすでに最低限のモジュールはインポートしてるので、`vue create`だけでOK。追加するモジュールがあれば適宜追加する感じ。<br>
+（プロジェクトディレクトリにモジュールインストールしたい場合は-g無しでインストール）<br>
+5.2はもともと多分-gで入れてないので、プロジェクトディレクトリで`npm init`、モジュールインポートどちらも行う。<br>
 
 1. ディレクトリ作成
 2. Dockerfile作成
-- 済み
+    - 済み
 3. docker-compose.yaml作成
-- 済み
+    - 済み
 4. コンテナ作成
-- `docker-compose build`
+    - `docker-compose build`
 5. 必要なモジュールインストール、プロジェクト作成
-- `docker-compose exec -it <NAME> /bin/bash`で入る
-- 手順3でボリュームマウントしてる
+    - `docker-compose exec -it <NAME> /bin/bash`で入る
+    - 手順3でボリュームマウントしてる<br>
 5-1. Vue.js
-- モジュールインポート
-    - `npm install -g @vue/cli @vue/cli-init`
-- プロジェクト作成
-    - `vue create <プロジェクト名>`
-- 動作確認
-    - `npm run serve`
+    - モジュールインポート
+        - `npm install -g @vue/cli @vue/cli-init`
+    - プロジェクト作成
+        - `vue create <プロジェクト名>`
+    - 動作確認
+        - `npm run serve`<br>
 5-2. Node.js + express
-- `npm init`で「package.json」作成
-- モジュールインポート
-    - `npm install express cors`
-    - `npm install nodemon`
-- 「index.js」ファイル作成
-    - 参考：https://reffect.co.jp/vue/vue-js-database#i-15
-- 動作確認
-    - `npx nodemon index.js`
+    - `npm init`で「package.json」作成
+    - モジュールインポート
+        - `npm install express cors`
+        - `npm install nodemon`
+    - 「index.js」ファイル作成
+        - 参考：https://reffect.co.jp/vue/vue-js-database#i-15
+    - 動作確認
+        - `npx nodemon index.js`
 6. 立ち上げ
-- `docker-compose up -d`
-- `docker-compose up`の方がエラー見えてデバッグしやすいので推奨。（webアプリ開発時の話。）
-- `-d`をつけると、ブラウザの検証からしか見えなくてデバッグしづらい。特にバックエンドのほう。
+    - `docker-compose up -d`
+    - `docker-compose up`の方がエラー見えてデバッグしやすいので推奨。（webアプリ開発時の話。）
+    - `-d`をつけると、ブラウザの検証からしか見えなくてデバッグしづらい。特にバックエンドのほう。
 7. 削除
-- `docker-compose down`
+    - `docker-compose down`
 0. TIPS
-- 片方だけ動かしたいとき
-    - `docker run -it -d --name <NAME> -p (PORT):(PORT) -v (LOCAL):/usr/src/app(一例) <IMAGE_NAME>`
-- ログ
-    - `docker-compose logs <NAME>`
-- バージョン確認
-    - Vue.js 
-        - プロジェクトディレクトリにインストールしたVue.jsのバージョン
-            - npm list vue
-        - グローバルにインストールしたVue.jsのバージョン
-            - npm list -g vue
-        - CDNでファイル読み込み
-            - ブラウザ→検証から確認可能
-    - vue-cli（Vue.jsのプロジェクトを簡単に立ち上げるためのパッケージ）
-        - vue -v
-- npmのプロキシ設定
-    - https://qiita.com/LightSpeedC/items/b273735e909bd381bcf1
-    - 設定の削除`npm config delete proxy`
-    - 設定の確認`npm config get proxy`
+    - 片方だけ動かしたいとき
+        - `docker run -it -d --name <NAME> -p (PORT):(PORT) -v (LOCAL):/usr/src/app(一例) <IMAGE_NAME>`
+    - ログ
+        - `docker-compose logs <NAME>`
+    - バージョン確認
+        - Vue.js 
+            - プロジェクトディレクトリにインストールしたVue.jsのバージョン
+                - npm list vue
+            - グローバルにインストールしたVue.jsのバージョン
+                - npm list -g vue
+            - CDNでファイル読み込み
+                - ブラウザ→検証から確認可能
+        - vue-cli（Vue.jsのプロジェクトを簡単に立ち上げるためのパッケージ）
+            - vue -v
+    - npmのプロキシ設定
+        - https://qiita.com/LightSpeedC/items/b273735e909bd381bcf1
+        - 設定の削除`npm config delete proxy`
+        - 設定の確認`npm config get proxy`
 
 ## TIPS
 ### Vue
@@ -175,7 +175,6 @@ Docker使わないときは、手順としては1→5（の一部）のみでOK!
             - `app.get`にしたら戻り値つけてもエラーになるので注意！
 - favicon配信したかったら`npm install serve-favicon`でモジュールDLする必要あり
 - fetchのmethodによりexpressで使用するメソッドが変わる
-
     - get（データ取得など）ならapp.get
     - post（値を格納など）ならapp.post
     - put(値の更新など)ならapp.put
@@ -287,12 +286,11 @@ https://zenn.dev/ikuraikura/articles/71b917ab11ae690e3cd7
     - やり直したらgit commit --amendで実行
     - git rebase --continue
         - rebase -iコマンドの一連の流れ
-            以下はHEAD~3を指定した場合。HEAD3を基点としてその子
-            コミットから修正可能
-            HEAD~3
-            HEAD~2 edit
-            HEAD~1 pick
-            HEAD pick
+            - 以下はHEAD~3を指定した場合。HEAD3を基点としてその子コミットから修正可能<br>
+            HEAD~3<br>
+            HEAD~2 edit<br>
+            HEAD~1 pick<br>
+            HEAD pick<br>
             1. git rebase -iで対話的リベースモードに入る
             2. 修正したいコミットをeditにする
             3. editのコミットのところでコミットの適用が止まる
@@ -304,30 +302,22 @@ https://zenn.dev/ikuraikura/articles/71b917ab11ae690e3cd7
     - pick -> squashにすると、そのコミットを直前のコミットとまとめて一つにする
 - コミットを分割する場合
     - 分割したいコミットをpick -> editにする
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-
 
 #### 環境構築参考サイト
-[参考サイト]
-[dockerでVue環境を構築](https://zenn.dev/rihito/articles/30deafe567a564)
-[create-vueでVueプロジェクトを作成してみる](https://zenn.dev/kyrice2525/articles/d0024393071aee)
-[WLS2 の Docker コンテナ内の Laravel9.2 Vite SPA 。 `npm run dev` 時に Docker ホストのウェブブラウザからコンテナ内の Vite 開発サーバに繋がるようにした記録](https://oki2a24.com/2022/08/28/connect-vite-dev-server-at-npm-run-dev-in-wls2-docker-laravel9-2-vite-spa/)
-[docker-compose.ymlのbuild設定はとりあえずcontextもdockerfileも埋めとけって話](https://qiita.com/sam8helloworld/items/e7fffa9afc82aea68a7a)
+[参考サイト]<br>
+[dockerでVue環境を構築](https://zenn.dev/rihito/articles/30deafe567a564)<br>
+[create-vueでVueプロジェクトを作成してみる](https://zenn.dev/kyrice2525/articles/d0024393071aee)<br>
+[WLS2 の Docker コンテナ内の Laravel9.2 Vite SPA 。 `npm run dev` 時に Docker ホストのウェブブラウザからコンテナ内の Vite 開発サーバに繋がるようにした記録](https://oki2a24.com/2022/08/28/connect-vite-dev-server-at-npm-run-dev-in-wls2-docker-laravel9-2-vite-spa/)<br>
+[docker-compose.ymlのbuild設定はとりあえずcontextもdockerfileも埋めとけって話](https://qiita.com/sam8helloworld/items/e7fffa9afc82aea68a7a)<br>
 
 
 #### Webアプリ作成参考サイト
-webアプリ作成参考サイト
-[Vue3のリアクティブシステムを理解する(前編)](https://maasaablog.com/development/frontend/javascript/vue/4950/)
-[Vue.jsの双方向バインディング再入門](https://qiita.com/fruitriin/items/dc75af413da3661f9e78)
-[【Vue.js 3.2】`<script setup>` 構文がすごくすごい](https://zenn.dev/azukiazusa/articles/676d88675e4e74)
-[Node.jsでfetchを使ってAPIテストを行う方法](https://zenn.dev/tatsuyasusukida/articles/nodejs-test-api)
+webアプリ作成参考サイト<br>
+[Vue3のリアクティブシステムを理解する(前編)](https://maasaablog.com/development/frontend/javascript/vue/4950/)<br>
+[Vue.jsの双方向バインディング再入門](https://qiita.com/fruitriin/items/dc75af413da3661f9e78)<br>
+[【Vue.js 3.2】`<script setup>` 構文がすごくすごい](https://zenn.dev/azukiazusa/articles/676d88675e4e74)<br>
+[Node.jsでfetchを使ってAPIテストを行う方法](https://zenn.dev/tatsuyasusukida/articles/nodejs-test-api)<br>
 
 
-エラー参考サイト
+エラー参考サイト<br>
 [vue.jsで「The template root requires exactly one element.」とエラーが表示された時は？](https://qiita.com/yutoun/items/d72a5d3d3f7361e1cec3)
