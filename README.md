@@ -14,22 +14,22 @@ Docker使わないときは、手順としては1→5（の一部）のみでOK!
 5. 必要なモジュールインストール、プロジェクト作成
     - `docker-compose exec -it <NAME> /bin/bash`で入る
     - 手順3でボリュームマウントしてる<br>
-    5-1. Vue.js
-    - モジュールインポート
-        - `npm install -g @vue/cli @vue/cli-init`
-    - プロジェクト作成
-        - `vue create <プロジェクト名>`
-    - 動作確認
-        - `npm run serve`<br>
-    5-2. Node.js + express
-    - `npm init`で「package.json」作成
-    - モジュールインポート
-        - `npm install express cors`
-        - `npm install nodemon`
-    - 「index.js」ファイル作成
-        - 参考：https://reffect.co.jp/vue/vue-js-database#i-15
-    - 動作確認
-        - `npx nodemon index.js`
+    1. Vue.js
+        - モジュールインポート
+            - `npm install -g @vue/cli @vue/cli-init`
+        - プロジェクト作成
+            - `vue create <プロジェクト名>`
+        - 動作確認
+            - `npm run serve`<br>
+    2. Node.js + express
+        - `npm init`で「package.json」作成
+        - モジュールインポート
+            - `npm install express cors`
+            - `npm install nodemon`
+        - 「index.js」ファイル作成
+            - 参考：https://reffect.co.jp/vue/vue-js-database#i-15
+        - 動作確認
+            - `npx nodemon index.js`
 6. 立ち上げ
     - `docker-compose up -d`
     - `docker-compose up`の方がエラー見えてデバッグしやすいので推奨。（webアプリ開発時の話。）
