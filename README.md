@@ -286,10 +286,10 @@ https://zenn.dev/ikuraikura/articles/71b917ab11ae690e3cd7
     - やり直したらgit commit --amendで実行
     - git rebase --continue
         - rebase -iコマンドの一連の流れ
-            - 以下はHEAD~3を指定した場合。HEAD3を基点としてその子コミットから修正可能<br>
-            HEAD~3<br>
-            HEAD~2 edit<br>
-            HEAD~1 pick<br>
+            - 以下はHEAD\~3を指定した場合。HEAD3を基点としてその子コミットから修正可能<br>
+            HEAD\~3<br>
+            HEAD\~2 edit<br>
+            HEAD\~1 pick<br>
             HEAD pick<br>
             1. git rebase -iで対話的リベースモードに入る
             2. 修正したいコミットをeditにする
