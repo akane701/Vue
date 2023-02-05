@@ -14,14 +14,14 @@ Docker使わないときは、手順としては1→5（の一部）のみでOK!
 5. 必要なモジュールインストール、プロジェクト作成
     - `docker-compose exec -it <NAME> /bin/bash`で入る
     - 手順3でボリュームマウントしてる<br>
-5-1. Vue.js
+    5-1. Vue.js
     - モジュールインポート
         - `npm install -g @vue/cli @vue/cli-init`
     - プロジェクト作成
         - `vue create <プロジェクト名>`
     - 動作確認
         - `npm run serve`<br>
-5-2. Node.js + express
+    5-2. Node.js + express
     - `npm init`で「package.json」作成
     - モジュールインポート
         - `npm install express cors`
